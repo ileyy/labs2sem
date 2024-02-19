@@ -28,7 +28,7 @@ namespace lb1 {
                 sum += f(x);
             }
             integ = dx * sum;
-            return integ;
+            return Math.Round(integ, 4);
         }
 
         double Trap(double a, double b, int n) {
@@ -39,7 +39,7 @@ namespace lb1 {
                 double x2 = a + (i + 1) * dx;
                 integ += 0.5 * (x2 - x1) * (f(x1) + f(x2));
             }
-            return integ;
+            return Math.Round(integ, 4);
         }
 
         double Par(double a, double b, int n) {
@@ -50,7 +50,7 @@ namespace lb1 {
                 double x2 = a + (i + 1) * dx;
                 integ += (x2 - x1) / 6.0 * (f(x1) + 4.0 * f(0.5 * (x1 + x2)) + f(x2));
             }
-            return integ;
+            return Math.Round(integ, 4);
         }
 
         public Form1() {
