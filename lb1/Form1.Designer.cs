@@ -192,7 +192,7 @@
             // 
             this.button6.Location = new System.Drawing.Point(282, 249);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(206, 59);
+            this.button6.Size = new System.Drawing.Size(197, 59);
             this.button6.TabIndex = 16;
             this.button6.Text = "Ввод";
             this.button6.UseVisualStyleBackColor = true;
