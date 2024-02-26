@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-using System.Runtime.InteropServices;
-using File = System.IO.File;
+using System.Runtime.CompilerServices;
+using static System.Windows.Forms.LinkLabel;
 
 namespace lb2
 {
     public partial class Form1 : Form {
         bool flag = false;
+        static bool coinc(string str, string mask)
+        {
+            if (mask.Length != 2 || mask[0] != '*')
+                return false;
+            if (string.IsNullOrEmpty(str) || str.Length < 2)
+                return false;
+            if (char.ToLower(str[str.Length - 2]) != char.ToLower(mask[1]))
+                return false;
+            return true;
+        }
+
 
         public Form1() {
             InitializeComponent();
@@ -67,92 +78,45 @@ namespace lb2
         }
 
         private void работа1ToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileStream f = null, g = null;
-            string fn = "";
-            int nomer, o1, o2, o3, i = 0;
-            char[] gr = new char[9];
-            char[] fam = new char[13];
-            float sr;
-            OpenFileDialog openFile1 = new OpenFileDialog();
-            SaveFileDialog saveFile1 = new SaveFileDialog();
+            StreamReader reader = new StreamReader("list.txt");
+            List<string> badStudents = new List<string>();
+            while (!reader.EndOfStream) {
+                string line = reader.ReadLine();
+                string studentNum = line.Substring(0, 4).Trim();
+                string groupNum = line.Substring(6, 8).Trim();
+                string surname = line.Substring(14, 12).Trim();
+                int grade1 = int.Parse(line.Substring(26, 3).Trim());
+                int grade2 = int.Parse(line.Substring(29, 3).Trim());
+                int grade3 = int.Parse(line.Substring(32).Trim());
+                if ((grade1 == grade2 || grade1 == grade3 || grade2 == grade3) && (grade1 == 2 || grade2 == 2 && grade3 == 2)) {
+                    badStudents.Add(line);
+                }
+                StreamWriter groupWriter = new StreamWriter($"{groupNum}.txt", true);
+                groupWriter.WriteLine(line);
+                groupWriter.Close();
+            }
 
-            if (openFile1.ShowDialog() == DialogResult.OK && openFile1.FileName.Length > 0) {
-                fn = openFile1.FileName;
-                try {
-                    f = new FileStream(fn, FileMode.Open);
-                    StreamReader reader = new StreamReader(f);
-                    StreamWriter writer = new StreamWriter(g);
-                    string line;
-                    while ((line = reader.ReadLine()) != null) {
-                        string[] parts = line.Split(' ');
-                        nomer = int.Parse(parts[0]);
-                        gr = parts[1].ToCharArray();
-                        fam = parts[2].ToCharArray();
-                        o1 = int.Parse(parts[3]);
-                        o2 = int.Parse(parts[4]);
-                        o3 = int.Parse(parts[5]);
-                        sr = (o1 + o2 + o3) / 3.0f;
-
-                        if (sr > 4) {
-                            richTextBox1.AppendText(line + "\n");
-                            i++;
-                            string formattedLine = $"{i,2} {new string(gr),8} {new string(fam),10} {o1,2} {o2,2} {o3,2} {sr,8:f2}\n";
-                            writer.WriteLine(formattedLine);
-                        }
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show("Ошибка открытия файла: " + ex.Message);
-                }
-                finally {
-                    if (f != null) f.Close();
-                    if (g != null) g.Close();
-                }
+            reader.Close();
+            richTextBox1.Text = "Студенты с плохими оценками: \n";
+            for (int i = 0; i < badStudents.Count; i++) {
+                richTextBox1.Text = richTextBox1.Text + badStudents[i] + "\n";
             }
         }
 
 
         private void работа2ToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileStream f = null, g = null;
-            string fn = "";
-            int nomer, o1, o2, o3, i = 0;
-            char[] gr = new char[9];
-            char[] fam = new char[13];
-            OpenFileDialog openFile1 = new OpenFileDialog();
-            SaveFileDialog saveFile1 = new SaveFileDialog();
-
-            if (openFile1.ShowDialog() == DialogResult.OK && openFile1.FileName.Length > 0) {
-                fn = openFile1.FileName;
-                try {
-                    f = new FileStream(fn, FileMode.Open);
-                    StreamReader reader = new StreamReader(f);
-                    string line;
-                    StreamWriter writer = new StreamWriter(g);
-                    while ((line = reader.ReadLine()) != null) {
-                        string[] parts = line.Split(' ');
-                        nomer = int.Parse(parts[0]);
-                        gr = parts[1].ToCharArray();
-                        fam = parts[2].ToCharArray();
-                        o1 = int.Parse(parts[3]);
-                        o2 = int.Parse(parts[4]);
-                        o3 = int.Parse(parts[5]);
-                        writer.WriteLine($" {new string(fam),8} {o1,2}{o2,2}{o3,2}");
-                        if (o1 >= 4 && o2 >= 4 && o3 >= 4) {
-                            string p = new string(fam);
-                            p = p + " " + o1 + " " + o2 + " " + o3 + "\n";
-                            richTextBox1.AppendText(p);
-                            writer.WriteLine($" {new string(fam),8} {o1,2}{o2,2}{o3,2}");
-                            i++;
-                        }
-                    }
-                    if (i == 0) writer.WriteLine("нет\n");
-                }
-                catch (Exception ex) {
-                    MessageBox.Show("Ошибка открытия файла: " + ex.Message);
-                }
-                finally{
-                    if (f != null) f.Close();
-                    if (g != null) g.Close();
+            string mask = richTextBox1.Text.Trim();
+            if (string.IsNullOrEmpty(mask)) {
+                MessageBox.Show("Введите маску", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            StreamReader file = new StreamReader("list.txt");
+            string line;
+            richTextBox1.Clear();
+            while ((line = file.ReadLine()) != null) {
+                string surname = line.Substring(14, 12).Trim();
+                if (coinc(surname, mask)) {
+                    richTextBox1.AppendText(surname + Environment.NewLine);
                 }
             }
         }
@@ -162,7 +126,7 @@ namespace lb2
         private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
             if (flag) {
                 DialogResult result;
-                result = MessageBox.Show(this, "Файл изменен.Сохранить?", "Ошибка", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                result = MessageBox.Show(this, "Файл изменен. Сохранить?", "Ошибка", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Yes) сохранитьToolStripMenuItem_Click(sender, e);
                 flag = false;
             }
