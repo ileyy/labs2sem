@@ -1,0 +1,12 @@
+   1  IU1-11  Ivanov        3  4  5
+   2  IU1-11  Koshkin       3  3  3
+   3  IU1-11  Khorkov       2  4  2
+   4  IU1-11  Kaplin        5  5  5
+   1  IU1-21  Shishakova    3  4  2
+   2  IU1-21  Pavlov        2  2  2
+   3  IU1-21  Zakharov      2  5  2
+   4  IU1-21  Peshekhonov   3  4  5
+   1  IU2-11  Vabischevich  5  5  2
+   2  IU2-11  Arkhipova     5  2  2
+   3  IU2-11  Volskaya      2  2  2
+   4  IU2-11  Plotnik       3  4  2

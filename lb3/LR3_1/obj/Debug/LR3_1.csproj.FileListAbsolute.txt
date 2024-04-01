@@ -1,0 +1,10 @@
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\bin\Debug\LR3_1.exe.config
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\bin\Debug\LR3_1.exe
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\bin\Debug\LR3_1.pdb
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.csproj.AssemblyReference.cache
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.Form1.resources
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.Properties.Resources.resources
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.csproj.GenerateResource.cache
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.csproj.CoreCompileInputs.cache
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.exe
+C:\Users\timofejkaplin\source\repos\LR3_1\LR3_1\obj\Debug\LR3_1.pdb
