@@ -16,15 +16,16 @@ namespace lb2
 {
     public partial class Form1 : Form {
         bool flag = false;
-        static bool coinc(string str, string mask)
+        static bool coinc(string line, string mask)
         {
-            if (mask.Length != 2 || mask[0] != '*')
-                return false;
-            if (string.IsNullOrEmpty(str) || str.Length < 2)
-                return false;
-            if (char.ToLower(str[str.Length - 2]) != char.ToLower(mask[1]))
-                return false;
-            return true;
+            string[] msk = mask.Split('*');
+            string s1 = line.Substring(0, msk[0].Length);
+            string s2 = line.Substring(line.Length - msk[1].Length, msk[1].Length);
+            if ((String.Equals(msk[0].ToLower(), s1.ToLower())) && (String.Equals(msk[1].ToLower(), s2.ToLower())))
+            {
+                return true;
+            }
+            return false;
         }
 
 
