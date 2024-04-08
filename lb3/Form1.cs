@@ -280,7 +280,7 @@ namespace lb3
             if (success)
                 MessageBox.Show("Файл записан!", "Ура", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                MessageBox.Show("Ошибка :(", "Грустно", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ошибкa.", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
