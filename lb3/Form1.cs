@@ -274,7 +274,7 @@ namespace lb3
 
         private void convertTxtToBinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string inputFile = "\\\\Mac\\Home\\Downloads\\students.txt";
+            string inputFile = "C:\\Users\\iley\\source\\repos\\lb\\lb3\bin\\Debug\\students.txt";
             string outputFile = "students.bin";
             bool success = convertTxtToBin(inputFile, outputFile);
             if (success)
