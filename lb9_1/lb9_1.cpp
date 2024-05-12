@@ -1,0 +1,38 @@
+﻿#include <iostream>
+#include <string>
+
+void draw_clock() {
+    std::cout << "    /\\    \n";
+    std::cout << "   /  \\   \n";
+    std::cout << "  /    \\  \n";
+    std::cout << " / 12-6 \\ \n";
+    std::cout << "/3      9\\\n";
+    std::cout << "\\        /\n";
+    std::cout << " \\ 11-7 /\n";
+    std::cout << "  \\    / \n";
+    std::cout << "   \\  /  \n";
+    std::cout << "    \\/    \n";
+}
+
+void draw_house() {
+    std::cout << "    ________\n";
+    std::cout << "   /       \\\n";
+    std::cout << "  /_________\\\n";
+    std::cout << "  |  _ _ _  |\n";
+    std::cout << "  | | | | | |\n";
+    std::cout << "  | |-+-| | |\n";
+    std::cout << "  | |_|_| | |\n";
+    std::cout << "  |    _    |\n";
+    std::cout << "  |   | |   |\n";
+    std::cout << "  |___|_|___|\n";
+}
+
+int main() {
+    std::cout << "Clock:\n";
+    draw_clock();
+
+    std::cout << "\nHouse:\n";
+    draw_house();
+
+    return 0;
+}
