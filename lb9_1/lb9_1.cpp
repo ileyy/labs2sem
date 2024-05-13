@@ -15,7 +15,7 @@ void draw_clock() {
 }
 
 void draw_house() {
-    std::cout << "    ________\n";
+    std::cout << "    _______ \n";
     std::cout << "   /       \\\n";
     std::cout << "  /_________\\\n";
     std::cout << "  |  _ _ _  |\n";
