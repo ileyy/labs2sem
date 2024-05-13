@@ -53,7 +53,7 @@ int main() {
                 window.close();
         }
 
-        window.clear();
+        window.clear(sf::Color(128, 128, 128));
         drawHouseAndSmoke(window);
         window.display();
     }
