@@ -4,12 +4,12 @@
 void draw_clock() {
     std::cout << "    /\\    \n";
     std::cout << "   /  \\   \n";
-    std::cout << "  /    \\  \n";
-    std::cout << " / 12-6 \\ \n";
+    std::cout << "  / 12 \\  \n";
+    std::cout << " /      \\ \n";
     std::cout << "/3      9\\\n";
     std::cout << "\\        /\n";
-    std::cout << " \\ 11-7 /\n";
-    std::cout << "  \\    / \n";
+    std::cout << " \\      /\n";
+    std::cout << "  \\ 11 / \n";
     std::cout << "   \\  /  \n";
     std::cout << "    \\/    \n";
 }
