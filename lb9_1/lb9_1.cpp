@@ -51,7 +51,7 @@ void drawClock(sf::RenderWindow& window) {
     sf::Vector2f positions[4] = {
         sf::Vector2f(490, 110),  // 12
         sf::Vector2f(575, 187), // 3
-        sf::Vector2f(493, 270), // 6
+        sf::Vector2f(490, 270), // 6
         sf::Vector2f(415, 187)  // 9
     };
 
